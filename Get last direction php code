@@ -1,0 +1,14 @@
+<?php
+$conn = new mysqli("localhost", "root", "", "robot_control");
+
+if ($conn->connect_error) {
+    die("فشل الاتصال: " . $conn->connect_error);
+}
+
+$result = $conn->query("SELECT direction FROM directions ORDER BY id DESC LIMIT 1");
+if ($row = $result->fetch_assoc()) {
+    echo $row['direction'];
+} else {
+    echo "لا يوجد اتجاه.";
+}
+?>
